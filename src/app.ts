@@ -2,6 +2,8 @@ import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import notFound from './app/middlewares/notFound';
+import { config } from 'dotenv';
+config();
 
 const app: Application = express();
 app.use(cors({
@@ -13,11 +15,15 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 app.get('/', (req: Request, res: Response) => {
     res.send({
-        Message: "Ph health care server.."
-    })
+        Message: "server is running..",
+        Env: process.env.NODE_ENV,
+        uptime : process.uptime().toFixed(2) + " seconds" ,
+        timestamp : new Date().toISOString() 
+
+
+    });
 });
 
 
