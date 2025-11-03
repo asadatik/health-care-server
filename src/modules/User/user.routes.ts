@@ -5,7 +5,7 @@ import { userController } from './user.controller';
 
 const router = express.Router();
 
-router.post('/patients', (req: Request, res: Response, next: NextFunction) => {
+router.post('/add-patient', (req: Request, res: Response, next: NextFunction) => {
     return userController.createPatient(req, res, next);
 });
 

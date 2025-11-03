@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 
+
 const prisma = new PrismaClient({
     log: [
         {
@@ -22,7 +23,7 @@ const prisma = new PrismaClient({
     ],
 })
 
-prisma.$on('query', (e: { query: string; params: string; duration: string; }) => {
+prisma.$on('query', (e: { query: string; params: string; duration: number; }) => {
     console.log("-------------------------------------------")
     console.log('Query: ' + e.query);
     console.log("-------------------------------------------")

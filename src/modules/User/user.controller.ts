@@ -19,6 +19,7 @@ const createPatient = catchAsync(async (req: Request, res: Response) => {
         message: "Patient Created successfuly!",
         data: result
     })
+    console.log(result)
 });
 
 export const userController = {
