@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { userService } from "./user.sevice";
+
 
 import httpStatus from "http-status";
 
@@ -8,19 +8,20 @@ import httpStatus from "http-status";
 
 import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/sendResponse";
+import { AuthService } from "./auth.service";
 
 //createPatient 
-const createPatient = catchAsync(async (req: Request, res: Response) => {
+const login = catchAsync(async (req: Request, res: Response) => {
     
 console.log("req.body", req.file);
 
 
-    const result = await userService.createPatient(req);
+    const result = await AuthService.login(req.body);
 
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Patient Created successfully!",
+        message: "user login  successfully!",
         data: result,
     })
    
@@ -29,9 +30,10 @@ console.log("req.body", req.file);
 
 
 
-export const userController = {
- 
-    createPatient 
+export const authController = {
+
+
+    login
 
 
 }
