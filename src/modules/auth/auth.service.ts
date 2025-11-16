@@ -1,7 +1,7 @@
 import { UserStatus } from "@prisma/client";
 import prisma from "../../shared/prisma";
 import bcrypt from "bcryptjs";
-
+import jwt from "jsonwebtoken";
 //
 const login = async ( payload : { email : string , password : string } ) => { 
 
@@ -24,8 +24,14 @@ if (!isPasswordMatched) {
 }
 
 
+  const accessToken =  jwt.sign  ( { email: user.email , role : user.role     }   ,  process.env.JWT_SECRET as string    ,  {
+    algorithm : "HS256" ,
+    expiresIn : "1h"
+  }  )  ;
+ 
 
 
+  return  { accessToken };
 }
 
 
