@@ -47,6 +47,11 @@ console.log("req.body", req.file);
 
 
 
+//getallusers
+
+
+
+
 export const authController = {
 
 
